@@ -27,26 +27,22 @@ let alfabeto = [
   { letra: "z", numero: 26 },
 ];
 
-function separarLetras(palavra) {
-  return palavra.split("");
-}
 function codificarPalavra(palavra) {
   if (!palavra) {
     console.error("Erro!");
-  } else {
-    let palavraSeparada = separarLetras(palavra);
-    console.log(palavraSeparada);
-    for (let i = 0; i < palavraSeparada.length; i++) {
-     if(palavraSeparada[i].indexOf(alfabeto.letra) == 0){
-      console.log("parecido!");
-      console.log(palavraSeparada[i].indexOf(alfabeto));
-     }else if(palavraSeparada[i].indexOf(alfabeto) == -1){
-      console.log("desparecido!")
-     }
-      
-    }
-
+    return;
   }
+
+  let palavraCodificada = palavra.split("") // Separa a palavra em letras individuais
+    .map((letra) => {
+      let objeto = alfabeto.find((item) => item.letra === letra); // Busca o número correspondente
+      console.log(letra);
+      return objeto ? objeto.numero : "?"; // Se não encontrar a letra, retorna "?"
+    })
+    .join(""); // Junta os números de volta como string
+
+  console.log(palavraCodificada);
+  return palavraCodificada;
 }
 
-codificarPalavra("algo");
+codificarPalavra("algo");//Saída 111614
